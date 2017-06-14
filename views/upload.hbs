@@ -1,0 +1,24 @@
+<form method='post' action='/upload' enctype='multipart/form-data' >
+    <input type="file" name='fields' value="选择文件"/><br>
+    <input type="submit" name='upload' value="提交" />
+</form>
+
+<script>
+
+    $(document).ready(function() {
+        $.ajax({
+            datatype:"json",
+            success: function (result) {
+                console.log(result);
+                if(result.status == 200 && result.validationFailed ){
+                    //show your alert here
+                    alert(result.message);
+                }
+            },
+            error: function(result){
+                //if any error happens it gets called back here
+                console.log(result);
+            }
+        });
+    });
+</script>
