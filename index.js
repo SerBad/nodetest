@@ -78,6 +78,9 @@ app.post('/upload', function (req, res) {
 // res.redirect('/upload');
 });
 
+app.get('/map', function (req, res, next) {
+    res.render('map', {});
+});
 
 
 db.connect(function (err) {
@@ -86,7 +89,7 @@ db.connect(function (err) {
         // process.exit(1)
     } else {
         console.log('You are now connected...')
-        app.listen(function () {
+        app.listen(app.get('port'),function () {
             console.log('Listening on port ' + app.get('port') + '......')
         });
     }

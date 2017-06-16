@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>异步加载地图</title>
+    <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main1119.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div id="team" style="width:500px; height:300px"></div>
+<script src="https://webapi.amap.com/maps?v=1.3&key=c7481da543c8acd9d441453755f00ca8&callback=init"></script>
+<script>
+    function init(){
+        var map = new AMap.Map('team', {
+            center: [121.448623,31.287181],
+            zoom: 14
+        });
+        map.plugin(["AMap.ToolBar"], function() {
+            map.addControl(new AMap.ToolBar());
+        });
+
+        var marker = new AMap.Marker({
+            position: [121.448623,31.287181]
+        });
+        marker.setMap(map);
+        marker.on('click',function(e){
+            infowindow.open(map,e.target.getPosition());
+        })
+        var infowindow;
+        var infoWindowContent = '<div class="infowindow-content">' +
+                '<div class="amap-info-header text-center">上海才隽网络科技有限公司</div>' +
+                '<div class="amap-info-body text-center">大宁德必易园彭江路602号G座119室 </div></div>';
+
+        map.plugin('AMap.AdvancedInfoWindow', function () {
+            infowindow = new AMap.AdvancedInfoWindow({
+//                panel: 'panel',
+//                placeSearch: true,
+//                asOrigin: true,
+//                asDestination: true,
+                content: infoWindowContent
+            });
+            infowindow.open(map, [121.448623,31.287181]);
+        });
+    }
+</script>
+</body>
+</html>
