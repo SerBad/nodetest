@@ -33,23 +33,6 @@ app.get('/', function (req, res) {
     res.render('index', {});
 });
 
-app.get('/register', function (req, res) {
-    res.render('register', {});
-});
-
-app.get('/course_customization',function (req,res) {
-    res.render('course_customization',{});
-});
-app.get('/glo_teach',function (req,res) {
-    res.render('glo_teach',{});
-});
-app.get('/student_community',function (req,res) {
-    res.render('student_community',{});
-});
-app.get('/about_us',function (req,res) {
-    res.render('about_us',{});
-});
-
 var multer = require('multer');
 var date = require('./utils/date.js');
 var storage = multer.diskStorage({
